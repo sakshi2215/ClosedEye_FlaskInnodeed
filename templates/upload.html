@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #2980b9;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #2ecc71;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #f9f9f9;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload a Photo</h1>
+        <form action="/detect" method="POST" enctype="multipart/form-data">
+            <label for="photo-upload" class="custom-file-upload">Choose File</label>
+            <input id="photo-upload" type="file" name="photo" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+        {% if result %}
+            <div class="result">{{ result }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
