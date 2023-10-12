@@ -1,0 +1,4 @@
+mediapipe
+tensorflow
+flask
+// To run the app type "python model.py" in cmd

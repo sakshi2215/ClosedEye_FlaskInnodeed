@@ -12,6 +12,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f2f2f2;
+            flex-direction: column;
         }
 
         .container {
@@ -23,7 +24,7 @@
         }
 
         h1 {
-            margin-top: 0;
+            margin: 0;
         }
 
         form {
@@ -70,20 +71,62 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
+        .image-box {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+
+        .custom-file-upload::after {
+            content: "";
+            margin-left: 10px;
+        }
     </style>
+    <script>
+        function updateFileName() {
+            var input = document.getElementById('photo');
+            var selectedFileName = input.files[0] ? input.files[0].name : 'No file selected';
+            document.getElementById('selected-file-name').innerText = selectedFileName;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.getElementById('photo');
+            input.addEventListener('change', updateFileName);
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Upload a Photo</h1>
-        <form action="/detect" method="POST" enctype="multipart/form-data">
-            <label for="photo-upload" class="custom-file-upload">Choose File</label>
-            <input id="photo-upload" type="file" name="photo" accept="image/*" required>
-            <button type="submit">Upload</button>
+        <h1>Upload an image to detect eyes</h1>
+        <!-- Add an onchange event to the file input to call the JavaScript function -->
+        <form action="/detect" method="post" enctype="multipart/form-data">
+            <label for="photo" class="custom-file-upload">Choose File</label>
+            <input type="file" id="photo" name="photo">
+            <button type="submit">Detect</button>
         </form>
+        
+        <p id="selected-file-name">No file selected</p>
+        
         {% if result %}
-            <div class="result">{{ result }}</div>
+            <h2>{{ result }}</h2>
         {% endif %}
+        
+        <div class="image-box">
+            {% if image_path %}
+                <img src="{{ image_path }}" alt="Detected Image">
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
-
