@@ -1,7 +1,7 @@
 # Flaskintegrated_eyeDetection
 It uses Flaskbased Integration where the user will upload an image and it will predict whether it has open eyes or closed eyes.
 Model used here is trained on Drowsiness Detection 
-Open the terminal and run "python main.py"
+Open the terminal and run "python model.py"
 
 ### **Output -1**
 ![Screenshot](https://github.com/sakshi2215/Flaskintegrated_eyeDetection/assets/116375190/d495ee98-ee4d-48e3-8652-e4fb5cc9c1e8)
